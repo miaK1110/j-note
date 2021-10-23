@@ -32,6 +32,8 @@
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "browser-sync": "^2.27.5",
-    "framer-motion": "^4.1.17"
+    "focus-visible": "^5.2.0",
+    "framer-motion": "^4.1.17",
+    "yarn": "^1.22.17"
   }
 }
