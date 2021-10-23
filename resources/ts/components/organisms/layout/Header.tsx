@@ -19,7 +19,6 @@ export const Header: VFC = memo(() => {
     <>
       <Flex
         as="nav"
-        bg="orange.50"
         color="gray.700"
         align="center"
         justify="space-between"
@@ -28,7 +27,7 @@ export const Header: VFC = memo(() => {
       >
         {/* logo */}
         <Flex align="center" as="a" mr={8} _hover={{ cursor: 'pointer' }}>
-          <Heading as="h1" fontSize={{ base: 'md', md: 'lg' }}>
+          <Heading as="h1" fontSize={{ base: 'md', md: 'xl' }}>
             J note
           </Heading>
         </Flex>
@@ -38,10 +37,10 @@ export const Header: VFC = memo(() => {
             <Link fontWeight="bold">Home</Link>
             <Link fontWeight="bold">About</Link>
             <Button colorScheme="teal" size="sm">
-              <Link>ログイン</Link>
+              <Link textDecoration="none">ログイン</Link>
             </Button>
             <Button colorScheme="orange" size="sm">
-              <Link>サインアップ</Link>
+              <Link textDecoration="none">サインアップ</Link>
             </Button>
           </Stack>
         </Flex>
