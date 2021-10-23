@@ -44973,7 +44973,6 @@ exports.Header = (0, react_1.memo)(function () {
 
   return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(react_2.Flex, {
     as: "nav",
-    bg: "orange.50",
     color: "gray.700",
     align: "center",
     justify: "space-between",
@@ -44993,7 +44992,7 @@ exports.Header = (0, react_1.memo)(function () {
     as: "h1",
     fontSize: {
       base: 'md',
-      md: 'lg'
+      md: 'xl'
     }
   }, "J note")), react_1["default"].createElement(react_2.Flex, {
     display: {
@@ -45011,10 +45010,14 @@ exports.Header = (0, react_1.memo)(function () {
   }, "About"), react_1["default"].createElement(react_2.Button, {
     colorScheme: "teal",
     size: "sm"
-  }, react_1["default"].createElement(react_2.Link, null, "\u30ED\u30B0\u30A4\u30F3")), react_1["default"].createElement(react_2.Button, {
+  }, react_1["default"].createElement(react_2.Link, {
+    textDecoration: "none"
+  }, "\u30ED\u30B0\u30A4\u30F3")), react_1["default"].createElement(react_2.Button, {
     colorScheme: "orange",
     size: "sm"
-  }, react_1["default"].createElement(react_2.Link, null, "\u30B5\u30A4\u30F3\u30A2\u30C3\u30D7")))), react_1["default"].createElement(MenuIconButton_1.MenuIconButton, {
+  }, react_1["default"].createElement(react_2.Link, {
+    textDecoration: "none"
+  }, "\u30B5\u30A4\u30F3\u30A2\u30C3\u30D7")))), react_1["default"].createElement(MenuIconButton_1.MenuIconButton, {
     onOpen: onOpen
   }), react_1["default"].createElement(MenuDrawer_1.MenuDrawer, {
     onClose: onClose,
@@ -45078,13 +45081,264 @@ var react_2 = __webpack_require__(/*! @chakra-ui/react */ "./node_modules/@chakr
 
 var layout_1 = __webpack_require__(/*! @chakra-ui/layout */ "./node_modules/@chakra-ui/layout/dist/cjs/index.js");
 
+var icons_1 = __webpack_require__(/*! @chakra-ui/icons */ "./node_modules/@chakra-ui/icons/dist/cjs/index.js");
+
 exports.Toppage = (0, react_1.memo)(function () {
-  return react_1["default"].createElement(react_2.Flex, null, react_1["default"].createElement(layout_1.Box, null), react_1["default"].createElement(layout_1.Box, {
-    boxSize: "sm"
+  return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(react_2.Flex, {
+    mt: 20,
+    mx: 10
+  }, react_1["default"].createElement(layout_1.Box, {
+    w: "50%",
+    backGroundColor: "teal",
+    // lineHeight="tight"
+    textAlign: "center"
+  }, react_1["default"].createElement(layout_1.Heading, {
+    as: "h2",
+    fontSize: {
+      base: '16px',
+      md: '28px',
+      lg: '36px'
+    },
+    fontWeight: "bold",
+    letterSpacing: 1,
+    mb: 5
+  }, "\u30A8\u30F3\u30B8\u30CB\u30A2\u7279\u5316\u578B", react_1["default"].createElement("br", null), "Markdown\u5F62\u5F0F\u30E1\u30E2\u30A2\u30D7\u30EA"), react_1["default"].createElement(react_2.Text, {
+    fontSize: {
+      base: 'xs',
+      md: 'sm',
+      lg: 'md'
+    },
+    pb: 5
+  }, "\u3055\u3063\u305D\u304F\u59CB\u3081\u3066\u307F\u3088\u3046\uFF01"), react_1["default"].createElement(react_2.Button, {
+    colorScheme: "orange"
+  }, "\u4F1A\u54E1\u767B\u9332\u3059\u308B(\u7121\u6599)")), react_1["default"].createElement(layout_1.Box, {
+    w: "50%"
   }, react_1["default"].createElement(react_2.Image, {
     src: '/img/MainVIsualImg.png',
     alt: "main-visual-img"
-  })));
+  }))), react_1["default"].createElement(react_2.Image, {
+    src: '/img/wave1.svg',
+    alt: "main-visual-img"
+  }), react_1["default"].createElement(layout_1.Box, {
+    w: "100%",
+    bg: "background.100",
+    mh: "300px"
+  }, react_1["default"].createElement(react_2.Text, {
+    textAlign: "center",
+    color: "teal.400",
+    fontWeight: "bold",
+    fontSize: {
+      base: '6px',
+      md: '8px',
+      lg: '10px'
+    },
+    mb: "-5px",
+    pt: 6
+  }, "WHAT WE DO"), react_1["default"].createElement(react_2.Text, {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: {
+      base: 'xl',
+      md: '2xl',
+      lg: '3xl'
+    },
+    letterSpacing: 1,
+    mb: 6
+  }, "Our Offer"), react_1["default"].createElement(layout_1.Heading, {
+    as: "h3",
+    fontSize: {
+      base: '14px',
+      md: '16px',
+      lg: '18px'
+    },
+    fontWeight: "bold",
+    letterSpacing: 1,
+    mx: 5,
+    mb: 5,
+    textAlign: "center"
+  }, "\u3053\u3093\u306A\u7D4C\u9A13\u306F\u3042\u308A\u307E\u305B\u3093\u304B\uFF1F"), react_1["default"].createElement(react_2.Flex, {
+    mx: 10
+  }, react_1["default"].createElement(layout_1.Box, {
+    w: {
+      base: '0%',
+      md: '30%'
+    }
+  }, react_1["default"].createElement(react_2.Image, {
+    src: '/img/top.png',
+    alt: "",
+    display: {
+      base: 'none',
+      sm: 'block',
+      md: 'block'
+    }
+  })), react_1["default"].createElement(layout_1.Box, {
+    w: {
+      base: '100%',
+      md: '70%'
+    },
+    textAlign: "left"
+  }, react_1["default"].createElement(react_2.Text, {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: {
+      base: 'sm',
+      md: 'md',
+      lg: 'lg'
+    },
+    letterSpacing: 1
+  }, react_1["default"].createElement(icons_1.CheckIcon, {
+    color: "teal",
+    boxSize: 6
+  }), "\u3053\u306E\u30A8\u30E9\u30FC\u524D\u306B\u3082\u898B\u305F\u3051\u3069\u306A\u3093\u3060\u3063\u305F\u304B\u306A\uFF1F"), react_1["default"].createElement(react_2.Text, {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: {
+      base: 'sm',
+      md: 'md',
+      lg: 'lg'
+    },
+    letterSpacing: 1
+  }, react_1["default"].createElement(icons_1.CheckIcon, {
+    color: "teal",
+    boxSize: 6
+  }), "\u74B0\u5883\u69CB\u7BC9\u3042\u307E\u308A\u3084\u3089\u306A\u3044\u304B\u3089\u5FD8\u308C\u305F\u306A\u3002\u3002"), react_1["default"].createElement(react_2.Text, {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: {
+      base: 'sm',
+      md: 'md',
+      lg: 'lg'
+    },
+    letterSpacing: 1
+  }, react_1["default"].createElement(icons_1.CheckIcon, {
+    color: "teal",
+    boxSize: 6
+  }), "\u3053\u306E\u5B9F\u88C5\u524D\u306B\u3082\u3084\u3063\u305F\u3051\u3069\u3069\u3046\u3084\u3063\u305F\u3093\u3060\u3063\u3051\uFF1F"), react_1["default"].createElement(react_2.Text, {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: {
+      base: 'sm',
+      md: 'md',
+      lg: 'lg'
+    },
+    letterSpacing: 1
+  }, react_1["default"].createElement(icons_1.CheckIcon, {
+    color: "teal",
+    boxSize: 6
+  }), "\u30AA\u30EA\u30B8\u30CA\u30EB\u306E\u95A2\u6570\u4F5C\u3063\u305F\u3051\u3069\u3069\u3053\u306B\u7F6E\u3044\u305F\u304B\u306A\uFF1F"), react_1["default"].createElement(react_2.Text, {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: {
+      base: 'sm',
+      md: 'md',
+      lg: 'lg'
+    },
+    letterSpacing: 1
+  }, react_1["default"].createElement(icons_1.CheckIcon, {
+    color: "teal",
+    boxSize: 6
+  }), "\u30AA\u30EA\u30B8\u30CA\u30EB\u306E\u95A2\u6570\u4F5C\u3063\u305F\u3051\u3069\u3069\u3053\u306B\u7F6E\u3044\u305F\u304B\u306A\uFF1F"), react_1["default"].createElement(react_2.Text, {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: {
+      base: 'sm',
+      md: 'md',
+      lg: 'lg'
+    },
+    letterSpacing: 1
+  }, "\u79C1\u305F\u3061\u306F\u305D\u3093\u306A\u3042\u306A\u305F\u306E\u304A\u60A9\u307F\u3092\u89E3\u6C7A\u3057\u307E\u3059\uFF01")))), react_1["default"].createElement(layout_1.Box, {
+    mh: "400px",
+    bg: "gray.100"
+  }, react_1["default"].createElement(react_2.Container, {
+    px: 10
+  }, react_1["default"].createElement(react_2.Text, {
+    textAlign: "left",
+    color: "teal.400",
+    fontWeight: "bold",
+    fontSize: {
+      base: '6px',
+      md: '8px',
+      lg: '10px'
+    },
+    mb: "-5px",
+    pt: 10
+  }, "LEARN MORE"), react_1["default"].createElement(react_2.Text, {
+    textAlign: "left",
+    fontWeight: "bold",
+    fontSize: {
+      base: 'xl',
+      md: '2xl',
+      lg: '3xl'
+    },
+    letterSpacing: 1,
+    mb: 10
+  }, "Features")), react_1["default"].createElement(react_2.Flex, {
+    pt: 10,
+    wrap: "wrap",
+    px: 10
+  }, react_1["default"].createElement(react_2.Container, {
+    bg: "teal",
+    h: "400px",
+    w: {
+      base: '100%',
+      sm: '50%',
+      md: '1/4'
+    }
+  }), react_1["default"].createElement(react_2.Container, {
+    bg: "tomato",
+    h: "400px",
+    mt: {
+      base: 'sm'
+    },
+    w: {
+      base: '100%',
+      sm: '50%',
+      md: '1/4'
+    }
+  }), react_1["default"].createElement(react_2.Container, {
+    bg: "orange",
+    h: "400px",
+    mt: {
+      base: 'sm'
+    },
+    w: {
+      base: '100%',
+      sm: '50%',
+      md: '1/4'
+    }
+  }), react_1["default"].createElement(react_2.Container, {
+    bg: "pink",
+    h: "400px",
+    mt: {
+      base: 'sm'
+    },
+    w: {
+      base: '100%',
+      sm: '50%',
+      md: '1/4'
+    }
+  })), react_1["default"].createElement(react_2.Image, {
+    src: '/img/wave2.svg',
+    alt: "main-visual-img"
+  })), react_1["default"].createElement(layout_1.Box, {
+    h: "200px",
+    w: "100%",
+    bg: "background.200"
+  }, react_1["default"].createElement(layout_1.Box, {
+    h: "200px"
+  }, "tmp"), react_1["default"].createElement(layout_1.Box, {
+    w: "100%",
+    bg: "teal.500",
+    h: "30px",
+    textAlign: "center"
+  }, react_1["default"].createElement(react_2.Text, {
+    as: "small",
+    color: "white",
+    fontSize: {
+      base: '12px',
+      md: '14px'
+    }
+  }, "Copyright \xA9 Mia All Rights Reserved."))));
 });
 
 /***/ }),
@@ -45237,7 +45491,9 @@ var theme = (0, react_1.extendTheme)({
   colors: {
     background: {
       // blanched almond color
-      100: '#ffebcd'
+      100: '#ffebcd',
+      // Dim Gray
+      200: '#6e6d6d'
     }
   }
 });
