@@ -8,6 +8,8 @@ const theme = extendTheme({
     background: {
       // blanched almond color
       100: '#ffebcd',
+      // Dim Gray
+      200: '#6e6d6d',
     },
   },
 });
