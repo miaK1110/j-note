@@ -7,7 +7,7 @@ const theme = extendTheme({
   colors: {
     background: {
       // blanched almond color
-      100: '#ffebcd',
+      100: '#fee9cc',
       // Dim Gray
       200: '#6e6d6d',
     },

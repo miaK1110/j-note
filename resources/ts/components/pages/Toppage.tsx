@@ -1,5 +1,14 @@
 import React, { memo, VFC } from 'react';
-import { Flex, Image, Button, Text, Container } from '@chakra-ui/react';
+import {
+  Flex,
+  Image,
+  Button,
+  Text,
+  Container,
+  Stack,
+  Wrap,
+  WrapItem,
+} from '@chakra-ui/react';
 import { Box, Center, Heading } from '@chakra-ui/layout';
 import { CheckIcon } from '@chakra-ui/icons';
 
@@ -35,7 +44,7 @@ export const Toppage: VFC = memo(() => {
         </Box>
       </Flex>
       {/* about section */}
-      <Image src={'/img/wave1.svg'} alt="main-visual-img" />
+      <Image src={'/img/wave4.svg'} alt="wave4" />
       <Box w="100%" bg="background.100" mh="300px">
         <Text
           textAlign="center"
@@ -76,56 +85,50 @@ export const Toppage: VFC = memo(() => {
             />
           </Box>
           <Box w={{ base: '100%', md: '70%' }} textAlign="left">
+            <Stack spacing={3}>
+              <Text
+                textAlign="center"
+                fontWeight="bold"
+                fontSize={{ base: 'sm', md: 'md', lg: 'lg' }}
+                letterSpacing={1}
+              >
+                <CheckIcon color="teal" boxSize={6} />
+                このエラー前にも見たけどなんだったかな？
+              </Text>
+              <Text
+                textAlign="center"
+                fontWeight="bold"
+                fontSize={{ base: 'sm', md: 'md', lg: 'lg' }}
+                letterSpacing={1}
+              >
+                <CheckIcon color="teal" boxSize={6} />
+                環境構築あまりやらないから忘れたな。。
+              </Text>
+              <Text
+                textAlign="center"
+                fontWeight="bold"
+                fontSize={{ base: 'sm', md: 'md', lg: 'lg' }}
+                letterSpacing={1}
+              >
+                <CheckIcon color="teal" boxSize={6} />
+                この実装前にもやったけどどうやったんだっけ？
+              </Text>
+              <Text
+                textAlign="center"
+                fontWeight="bold"
+                fontSize={{ base: 'sm', md: 'md', lg: 'lg' }}
+                letterSpacing={1}
+              >
+                <CheckIcon color="teal" boxSize={6} />
+                オリジナルの関数作ったけどどこに置いたかな？
+              </Text>
+            </Stack>
             <Text
               textAlign="center"
               fontWeight="bold"
               fontSize={{ base: 'sm', md: 'md', lg: 'lg' }}
               letterSpacing={1}
-            >
-              <CheckIcon color="teal" boxSize={6} />
-              このエラー前にも見たけどなんだったかな？
-            </Text>
-            <Text
-              textAlign="center"
-              fontWeight="bold"
-              fontSize={{ base: 'sm', md: 'md', lg: 'lg' }}
-              letterSpacing={1}
-            >
-              <CheckIcon color="teal" boxSize={6} />
-              環境構築あまりやらないから忘れたな。。
-            </Text>
-            <Text
-              textAlign="center"
-              fontWeight="bold"
-              fontSize={{ base: 'sm', md: 'md', lg: 'lg' }}
-              letterSpacing={1}
-            >
-              <CheckIcon color="teal" boxSize={6} />
-              この実装前にもやったけどどうやったんだっけ？
-            </Text>
-            <Text
-              textAlign="center"
-              fontWeight="bold"
-              fontSize={{ base: 'sm', md: 'md', lg: 'lg' }}
-              letterSpacing={1}
-            >
-              <CheckIcon color="teal" boxSize={6} />
-              オリジナルの関数作ったけどどこに置いたかな？
-            </Text>
-            <Text
-              textAlign="center"
-              fontWeight="bold"
-              fontSize={{ base: 'sm', md: 'md', lg: 'lg' }}
-              letterSpacing={1}
-            >
-              <CheckIcon color="teal" boxSize={6} />
-              オリジナルの関数作ったけどどこに置いたかな？
-            </Text>
-            <Text
-              textAlign="center"
-              fontWeight="bold"
-              fontSize={{ base: 'sm', md: 'md', lg: 'lg' }}
-              letterSpacing={1}
+              mt={10}
             >
               私たちはそんなあなたのお悩みを解決します！
             </Text>
@@ -133,54 +136,53 @@ export const Toppage: VFC = memo(() => {
         </Flex>
       </Box>
       {/* features section */}
-      <Box mh="400px" bg="gray.100">
-        <Container px={10}>
-          <Text
-            textAlign="left"
-            color="teal.400"
-            fontWeight="bold"
-            fontSize={{ base: '6px', md: '8px', lg: '10px' }}
-            mb="-5px"
-            pt={10}
-          >
-            LEARN MORE
-          </Text>
-          <Text
-            textAlign="left"
-            fontWeight="bold"
-            fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}
-            letterSpacing={1}
-            mb={10}
-          >
-            Features
-          </Text>
-        </Container>
-        <Flex pt={10} wrap="wrap" px={10}>
-          <Container
-            bg="teal"
-            h="400px"
-            w={{ base: '100%', sm: '50%', md: '1/4' }}
-          ></Container>
-          <Container
-            bg="tomato"
-            h="400px"
-            mt={{ base: 'sm' }}
-            w={{ base: '100%', sm: '50%', md: '1/4' }}
-          ></Container>
-          <Container
-            bg="orange"
-            h="400px"
-            mt={{ base: 'sm' }}
-            w={{ base: '100%', sm: '50%', md: '1/4' }}
-          ></Container>
-          <Container
-            bg="pink"
-            h="400px"
-            mt={{ base: 'sm' }}
-            w={{ base: '100%', sm: '50%', md: '1/4' }}
-          ></Container>
-        </Flex>
-        <Image src={'/img/wave2.svg'} alt="main-visual-img" />
+      <Box bg="gray.100">
+        <Box px={10}>
+          <Box w="100%" textAlign="left" mb={5}>
+            <Text
+              color="teal.400"
+              fontWeight="bold"
+              fontSize={{ base: '6px', md: '8px', lg: '10px' }}
+              mb="-5px"
+              ml={7}
+              pt={10}
+            >
+              LEARN MORE
+            </Text>
+            <Text
+              textAlign="left"
+              fontWeight="bold"
+              fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}
+              letterSpacing={1}
+              mb={10}
+            >
+              Features
+            </Text>
+          </Box>
+          <Wrap spacing="20px" justify="center">
+            <WrapItem>
+              <Center w="300px" h="300px" bg="white">
+                Box 1
+              </Center>
+            </WrapItem>
+            <WrapItem>
+              <Center w="300px" h="300px" bg="white">
+                Box 2
+              </Center>
+            </WrapItem>
+            <WrapItem>
+              <Center w="300px" h="300px" bg="white">
+                Box 3
+              </Center>
+            </WrapItem>
+            <WrapItem>
+              <Center w="300px" h="300px" bg="white">
+                Box 4
+              </Center>
+            </WrapItem>
+          </Wrap>
+        </Box>
+        <Image src={'/img/wave2.svg'} alt="wave2" />
       </Box>
       {/* footer */}
       <Box h="200px" w="100%" bg="background.200">

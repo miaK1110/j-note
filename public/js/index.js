@@ -45117,8 +45117,8 @@ exports.Toppage = (0, react_1.memo)(function () {
     src: '/img/MainVIsualImg.png',
     alt: "main-visual-img"
   }))), react_1["default"].createElement(react_2.Image, {
-    src: '/img/wave1.svg',
-    alt: "main-visual-img"
+    src: '/img/wave4.svg',
+    alt: "wave4"
   }), react_1["default"].createElement(layout_1.Box, {
     w: "100%",
     bg: "background.100",
@@ -45177,6 +45177,8 @@ exports.Toppage = (0, react_1.memo)(function () {
       md: '70%'
     },
     textAlign: "left"
+  }, react_1["default"].createElement(react_2.Stack, {
+    spacing: 3
   }, react_1["default"].createElement(react_2.Text, {
     textAlign: "center",
     fontWeight: "bold",
@@ -45225,7 +45227,7 @@ exports.Toppage = (0, react_1.memo)(function () {
   }, react_1["default"].createElement(icons_1.CheckIcon, {
     color: "teal",
     boxSize: 6
-  }), "\u30AA\u30EA\u30B8\u30CA\u30EB\u306E\u95A2\u6570\u4F5C\u3063\u305F\u3051\u3069\u3069\u3053\u306B\u7F6E\u3044\u305F\u304B\u306A\uFF1F"), react_1["default"].createElement(react_2.Text, {
+  }), "\u30AA\u30EA\u30B8\u30CA\u30EB\u306E\u95A2\u6570\u4F5C\u3063\u305F\u3051\u3069\u3069\u3053\u306B\u7F6E\u3044\u305F\u304B\u306A\uFF1F")), react_1["default"].createElement(react_2.Text, {
     textAlign: "center",
     fontWeight: "bold",
     fontSize: {
@@ -45233,26 +45235,17 @@ exports.Toppage = (0, react_1.memo)(function () {
       md: 'md',
       lg: 'lg'
     },
-    letterSpacing: 1
-  }, react_1["default"].createElement(icons_1.CheckIcon, {
-    color: "teal",
-    boxSize: 6
-  }), "\u30AA\u30EA\u30B8\u30CA\u30EB\u306E\u95A2\u6570\u4F5C\u3063\u305F\u3051\u3069\u3069\u3053\u306B\u7F6E\u3044\u305F\u304B\u306A\uFF1F"), react_1["default"].createElement(react_2.Text, {
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: {
-      base: 'sm',
-      md: 'md',
-      lg: 'lg'
-    },
-    letterSpacing: 1
+    letterSpacing: 1,
+    mt: 10
   }, "\u79C1\u305F\u3061\u306F\u305D\u3093\u306A\u3042\u306A\u305F\u306E\u304A\u60A9\u307F\u3092\u89E3\u6C7A\u3057\u307E\u3059\uFF01")))), react_1["default"].createElement(layout_1.Box, {
-    mh: "400px",
     bg: "gray.100"
-  }, react_1["default"].createElement(react_2.Container, {
+  }, react_1["default"].createElement(layout_1.Box, {
     px: 10
-  }, react_1["default"].createElement(react_2.Text, {
+  }, react_1["default"].createElement(layout_1.Box, {
+    w: "100%",
     textAlign: "left",
+    mb: 5
+  }, react_1["default"].createElement(react_2.Text, {
     color: "teal.400",
     fontWeight: "bold",
     fontSize: {
@@ -45261,6 +45254,7 @@ exports.Toppage = (0, react_1.memo)(function () {
       lg: '10px'
     },
     mb: "-5px",
+    ml: 7,
     pt: 10
   }, "LEARN MORE"), react_1["default"].createElement(react_2.Text, {
     textAlign: "left",
@@ -45272,54 +45266,28 @@ exports.Toppage = (0, react_1.memo)(function () {
     },
     letterSpacing: 1,
     mb: 10
-  }, "Features")), react_1["default"].createElement(react_2.Flex, {
-    pt: 10,
-    wrap: "wrap",
-    px: 10
-  }, react_1["default"].createElement(react_2.Container, {
-    bg: "teal",
-    h: "400px",
-    w: {
-      base: '100%',
-      sm: '50%',
-      md: '1/4'
-    }
-  }), react_1["default"].createElement(react_2.Container, {
-    bg: "tomato",
-    h: "400px",
-    mt: {
-      base: 'sm'
-    },
-    w: {
-      base: '100%',
-      sm: '50%',
-      md: '1/4'
-    }
-  }), react_1["default"].createElement(react_2.Container, {
-    bg: "orange",
-    h: "400px",
-    mt: {
-      base: 'sm'
-    },
-    w: {
-      base: '100%',
-      sm: '50%',
-      md: '1/4'
-    }
-  }), react_1["default"].createElement(react_2.Container, {
-    bg: "pink",
-    h: "400px",
-    mt: {
-      base: 'sm'
-    },
-    w: {
-      base: '100%',
-      sm: '50%',
-      md: '1/4'
-    }
-  })), react_1["default"].createElement(react_2.Image, {
+  }, "Features")), react_1["default"].createElement(react_2.Wrap, {
+    spacing: "20px",
+    justify: "center"
+  }, react_1["default"].createElement(react_2.WrapItem, null, react_1["default"].createElement(layout_1.Center, {
+    w: "300px",
+    h: "300px",
+    bg: "white"
+  }, "Box 1")), react_1["default"].createElement(react_2.WrapItem, null, react_1["default"].createElement(layout_1.Center, {
+    w: "300px",
+    h: "300px",
+    bg: "white"
+  }, "Box 2")), react_1["default"].createElement(react_2.WrapItem, null, react_1["default"].createElement(layout_1.Center, {
+    w: "300px",
+    h: "300px",
+    bg: "white"
+  }, "Box 3")), react_1["default"].createElement(react_2.WrapItem, null, react_1["default"].createElement(layout_1.Center, {
+    w: "300px",
+    h: "300px",
+    bg: "white"
+  }, "Box 4")))), react_1["default"].createElement(react_2.Image, {
     src: '/img/wave2.svg',
-    alt: "main-visual-img"
+    alt: "wave2"
   })), react_1["default"].createElement(layout_1.Box, {
     h: "200px",
     w: "100%",
@@ -45491,7 +45459,7 @@ var theme = (0, react_1.extendTheme)({
   colors: {
     background: {
       // blanched almond color
-      100: '#ffebcd',
+      100: '#fee9cc',
       // Dim Gray
       200: '#6e6d6d'
     }
