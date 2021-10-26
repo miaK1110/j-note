@@ -24,6 +24,8 @@ export const Header: VFC = memo(() => {
         justify="space-between"
         w="100%"
         padding={{ base: 4, md: 6 }}
+        position="fixed"
+        top="1rem"
       >
         {/* logo */}
         <Flex align="center" as="a" mr={8} _hover={{ cursor: 'pointer' }}>

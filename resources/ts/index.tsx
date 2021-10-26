@@ -21,14 +21,17 @@ import theme from './theme/Theme';
 import { Router } from './router/Router';
 import { Header } from './components/organisms/layout/Header';
 import { Toppage } from './components/pages/Toppage';
+import { Login } from './components/pages/Login';
+import { Signup } from './components/pages/Signup';
 
 const App = () => {
   return (
     <ChakraProvider theme={theme}>
       <Global styles={GlobalStyles} />
       <BrowserRouter>
-        <Header />
-        <Toppage />
+        {/* <Header /> */}
+        <Signup />
+        {/* <Toppage /> */}
         <Router />
       </BrowserRouter>
     </ChakraProvider>
