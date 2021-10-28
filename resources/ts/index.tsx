@@ -29,9 +29,6 @@ const App = () => {
     <ChakraProvider theme={theme}>
       <Global styles={GlobalStyles} />
       <BrowserRouter>
-        {/* <Header /> */}
-        <Signup />
-        {/* <Toppage /> */}
         <Router />
       </BrowserRouter>
     </ChakraProvider>

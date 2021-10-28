@@ -1,4 +1,5 @@
 import React, { memo, VFC } from 'react';
+import { Link as ReactLink } from 'react-router-dom';
 import {
   Flex,
   Heading,
@@ -38,12 +39,16 @@ export const Header: VFC = memo(() => {
           <Stack spacing={6} direction="row" align="center">
             <Link fontWeight="bold">Home</Link>
             <Link fontWeight="bold">About</Link>
-            <Button colorScheme="teal" size="sm">
-              <Link textDecoration="none">ログイン</Link>
-            </Button>
-            <Button colorScheme="orange" size="sm">
-              <Link textDecoration="none">サインアップ</Link>
-            </Button>
+            <ReactLink to="/login">
+              <Button colorScheme="teal" size="sm">
+                <Link textDecoration="none">ログイン</Link>
+              </Button>
+            </ReactLink>
+            <ReactLink to="/signup">
+              <Button colorScheme="orange" size="sm">
+                <Link textDecoration="none">サインアップ</Link>
+              </Button>
+            </ReactLink>
           </Stack>
         </Flex>
         {/* humberger icon for sm display */}
