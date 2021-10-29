@@ -1,12 +1,10 @@
-import React, { memo, VFC } from 'react';
+import React, { memo, useState, VFC } from 'react';
 import {
   Box,
   FormControl,
   FormLabel,
   Input,
   Stack,
-  VStack,
-  Checkbox,
   Link,
   Button,
   Divider,
@@ -16,8 +14,33 @@ import {
 } from '@chakra-ui/react';
 import { FaGoogle, FaTwitter, FaGithub } from 'react-icons/fa';
 import { ArrowLeftIcon } from '@chakra-ui/icons';
+import axios from 'axios';
+
+interface UserData {
+  name: string;
+  email: string;
+  password: string;
+}
 
 export const Signup: VFC = memo(() => {
+  const [userData, setUserData] = useState<UserData>({
+    name: '',
+    email: '',
+    password: '',
+  });
+  const handleSignup = async (e: any) => {
+    e.preventDefault();
+
+    const res = await axios.post(
+      'http://localhost:8000/api/add_user',
+      userData
+    );
+    if (res.data.status === 200) {
+      console.log(res.data.message);
+    } else {
+      console.log(res.data.messege);
+    }
+  };
   return (
     <Flex bg="gray.100" w="100vw" h="100vh">
       <Box
@@ -33,18 +56,47 @@ export const Signup: VFC = memo(() => {
         boxShadow="md"
       >
         <Heading as="h1">Sign up</Heading>
-        <form>
+        <form action="POST" onSubmit={handleSignup}>
           <Stack spacing={2}>
             <FormControl>
               <FormLabel></FormLabel>
-              <Input type="email" placeholder="Email" />
+              <Input
+                type="text"
+                placeholder="Username"
+                name="name"
+                value={userData.name}
+                onChange={(e) =>
+                  setUserData({ ...userData, name: e.target.value })
+                }
+              />
             </FormControl>
             <FormControl>
               <FormLabel></FormLabel>
-              <Input type="password" placeholder="Password" />
+              <Input
+                type="email"
+                placeholder="Email"
+                name="email"
+                value={userData.email}
+                onChange={(e) =>
+                  setUserData({ ...userData, email: e.target.value })
+                }
+              />
+            </FormControl>
+            <FormControl>
+              <FormLabel></FormLabel>
+              <Input
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={userData.password}
+                onChange={(e) =>
+                  setUserData({ ...userData, password: e.target.value })
+                }
+              />
             </FormControl>
           </Stack>
           <Button
+            type="submit"
             py={6}
             w="100%"
             mt={5}
