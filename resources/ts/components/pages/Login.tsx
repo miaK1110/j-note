@@ -1,4 +1,5 @@
-import React, { memo, VFC } from 'react';
+import React, { ChangeEvent, memo, useState, VFC } from 'react';
+import axios from 'axios';
 import {
   Box,
   FormControl,
@@ -18,6 +19,29 @@ import { FaGoogle, FaTwitter, FaGithub } from 'react-icons/fa';
 import { ArrowLeftIcon } from '@chakra-ui/icons';
 
 export const Login: VFC = memo(() => {
+  interface UserData {
+    email: string;
+    password: string;
+  }
+
+  const [userData, setUserData] = useState<UserData>({
+    email: '',
+    password: '',
+  });
+
+  const handleLogin = () => {
+    alert(JSON.stringify(userData));
+
+    // axios
+    //   .post('http://localhost:8000/user-login', [userData])
+    //   .then((res) => {
+    //     if (res.data) {
+    //     } else {
+    //     }
+    //   })
+    //   .catch((error) => console.log(error));
+  };
+
   return (
     <Flex bg="gray.100" w="100vw" h="100vh">
       <Box
@@ -37,20 +61,36 @@ export const Login: VFC = memo(() => {
           <Stack spacing={2}>
             <FormControl>
               <FormLabel></FormLabel>
-              <Input type="email" placeholder="Email" />
+              <Input
+                type="email"
+                placeholder="Email"
+                value={userData.email}
+                onChange={(e) =>
+                  setUserData({ ...userData, email: e.target.value })
+                }
+              />
             </FormControl>
             <FormControl>
               <FormLabel></FormLabel>
-              <Input type="password" placeholder="Password" />
+              <Input
+                type="password"
+                placeholder="Password"
+                value={userData.password}
+                onChange={(e) =>
+                  setUserData({ ...userData, password: e.target.value })
+                }
+              />
             </FormControl>
           </Stack>
           <Button
+            type="submit"
             py={6}
             w="100%"
             mt={5}
             bg="teal.400"
             color="white"
             _hover={{ bg: 'teal.300' }}
+            onClick={handleLogin}
           >
             ログイン
           </Button>
