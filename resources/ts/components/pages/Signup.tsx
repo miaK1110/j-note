@@ -1,4 +1,5 @@
 import React, { memo, useState, VFC } from 'react';
+import { useHistory } from 'react-router';
 import {
   Box,
   FormControl,
@@ -11,8 +12,16 @@ import {
   Circle,
   Heading,
   Flex,
+  InputGroup,
+  InputRightElement,
 } from '@chakra-ui/react';
-import { FaGoogle, FaTwitter, FaGithub } from 'react-icons/fa';
+import {
+  FaGoogle,
+  FaTwitter,
+  FaGithub,
+  FaEye,
+  FaEyeSlash,
+} from 'react-icons/fa';
 import { ArrowLeftIcon } from '@chakra-ui/icons';
 import axios from 'axios';
 
@@ -23,20 +32,30 @@ interface UserData {
 }
 
 export const Signup: VFC = memo(() => {
+  const history = useHistory();
   const [userData, setUserData] = useState<UserData>({
     name: '',
     email: '',
     password: '',
   });
+
+  // for a show/hide password functionality
+  const [show, setShow] = React.useState(false);
+  const handleClickShow = () => setShow(!show);
+
   const handleSignup = async (e: any) => {
     e.preventDefault();
+    console.log(
+      `submitbtnが押されたよ！userDataの中身:${JSON.stringify(userData)}`
+    );
 
     const res = await axios.post(
-      'http://localhost:8000/api/add_user',
+      'http://localhost:8000/api/add-user',
       userData
     );
     if (res.data.status === 200) {
       console.log(res.data.message);
+      history.push('/');
     } else {
       console.log(res.data.messege);
     }
@@ -65,6 +84,8 @@ export const Signup: VFC = memo(() => {
                 placeholder="Username"
                 name="name"
                 value={userData.name}
+                isRequired
+                errorBorderColor="crimson"
                 onChange={(e) =>
                   setUserData({ ...userData, name: e.target.value })
                 }
@@ -77,6 +98,8 @@ export const Signup: VFC = memo(() => {
                 placeholder="Email"
                 name="email"
                 value={userData.email}
+                isRequired
+                errorBorderColor="crimson"
                 onChange={(e) =>
                   setUserData({ ...userData, email: e.target.value })
                 }
@@ -84,15 +107,24 @@ export const Signup: VFC = memo(() => {
             </FormControl>
             <FormControl>
               <FormLabel></FormLabel>
-              <Input
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={userData.password}
-                onChange={(e) =>
-                  setUserData({ ...userData, password: e.target.value })
-                }
-              />
+              <InputGroup>
+                <Input
+                  type={show ? 'text' : 'password'}
+                  placeholder="Password"
+                  name="password"
+                  value={userData.password}
+                  isRequired
+                  errorBorderColor="crimson"
+                  onChange={(e) =>
+                    setUserData({ ...userData, password: e.target.value })
+                  }
+                />
+                <InputRightElement width="3rem">
+                  <Button h="1.75rem" size="sm" onClick={handleClickShow}>
+                    {show ? <FaEyeSlash /> : <FaEye />}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
             </FormControl>
           </Stack>
           <Button

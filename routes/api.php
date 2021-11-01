@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+// use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,8 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/add_user', [UserController::class, 'user_signup']);
+// Route::group(['middleware' => 'auth:sanctum'], function(){
+//     Route::apiResource()
+// })
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('add-user', [UserController::class, 'user_register']);
+// Route::post('login', [UserController::class, 'user_login']);
+
+Route::post('login', [UserController::class, 'sanctum_login']);
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });

@@ -1,4 +1,5 @@
 import React, { memo, VFC } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Flex,
   Button,
@@ -30,8 +31,12 @@ export const MenuDrawer: VFC<Props> = memo((props) => {
                 <Button w="100%" p={4}>
                   About
                 </Button>
-                <Button w="100%">ログイン</Button>
-                <Button w="100%">サインアップ</Button>
+                <Link to="/login">
+                  <Button w="100%">ログイン</Button>
+                </Link>
+                <Link to="/signup">
+                  <Button w="100%">サインアップ</Button>
+                </Link>
                 <DrawerCloseButton />
               </Flex>
             </DrawerBody>
