@@ -24,6 +24,12 @@ Route::post('add-user', [UserController::class, 'user_register']);
 
 Route::post('login', [UserController::class, 'sanctum_login']);
 
+Route::middleware('auth:sanctum')->group(function(){
+    Route::get('user', [UserController::class, 'user']);
+    Route::post('logout', [UserController::class, 'user_logout']);
+});
+
+
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });

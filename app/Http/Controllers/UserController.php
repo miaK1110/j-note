@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
@@ -54,10 +55,10 @@ class UserController extends Controller
           'status'=>401,
           'message'=> 'Invalid credentials',
         ]);
-      }else{
-
       }
+      /** @var \App\Models\User */
       $user = Auth::user();
+      // $user = Auth::user();
       $token = $user->createToken('token')->plainTextToken;
 
       $cookie = cookie('jwt', $token, 60 *24); // 1day
@@ -65,5 +66,15 @@ class UserController extends Controller
         'status'=>200,
         'message'=> 'User logined successfully',
       ])->withCookie($cookie);
+    }
+    public function user(){
+      return Auth::user();
+    }
+    public function user_logout(){
+$cookie = Cookie::forgety('jwt');
+
+return response([
+  'message' => 'User logouted successfully'
+])->withCookie($cookie);
     }
 }
