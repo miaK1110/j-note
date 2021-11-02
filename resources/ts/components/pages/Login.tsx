@@ -52,7 +52,8 @@ export const Login: VFC = memo(() => {
     const res = await axios.post('http://localhost:8000/api/login', userData);
     if (res.data.status === 200) {
       console.log(res.data.message);
-      history.push('/');
+      history.push('/mypage');
+      console.log('user loginできたよ！');
     } else {
       console.log(res.data.messege);
     }
@@ -79,6 +80,7 @@ export const Login: VFC = memo(() => {
               <FormLabel></FormLabel>
               <Input
                 type="email"
+                name="email"
                 placeholder="Email"
                 value={userData.email}
                 isRequired

@@ -20,7 +20,9 @@ export const Router: VFC = memo(() => {
       <Route path="/signup">
         <Signup />
       </Route>
-      <Route path="/mypage"></Route>
+      <Route path="/mypage">
+        <Mypage />
+      </Route>
     </Switch>
   );
 });

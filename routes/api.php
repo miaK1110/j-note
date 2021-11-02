@@ -22,7 +22,7 @@ use App\Http\Controllers\UserController;
 Route::post('add-user', [UserController::class, 'user_register']);
 // Route::post('login', [UserController::class, 'user_login']);
 
-Route::post('login', [UserController::class, 'sanctum_login']);
+Route::post('login', [UserController::class, 'user_login']);
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('user', [UserController::class, 'user']);

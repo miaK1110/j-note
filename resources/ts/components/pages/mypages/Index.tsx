@@ -1,11 +1,24 @@
 import React, { VFC } from 'react';
-import { Heading } from '@chakra-ui/react';
+import { Heading, Button } from '@chakra-ui/react';
+import axios from 'axios';
+import { useHistory } from 'react-router';
 
-type Props = {
-  name: string;
-};
+export const Mypage: VFC = () => {
+  const history = useHistory();
+  const handleLogout = async (e: any) => {
+    e.preventDefault();
 
-export const Mypage: VFC<Props> = (props) => {
-  const { name } = props;
-  return <Heading>{name}さんのマイページ！</Heading>;
+    const res = await axios.post('http://localhost:8000/api/logout');
+    if (res.data.status === 200) {
+      console.log('logoutしたよ！');
+      history.push('/');
+    }
+  };
+
+  return (
+    <>
+      <Heading>マイページ！</Heading>
+      <Button onClick={handleLogout}>ログアウト</Button>
+    </>
+  );
 };

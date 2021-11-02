@@ -20,47 +20,59 @@ class UserController extends Controller
         DB::table('users')->insert([
             'name' =>   $name,
             'email' =>  $email ,
-            'password'=> $password
+            'password'=> $password,
+            'created_at' => now(),
+            'updated_at' => now(),
           ]);
           return response()->json([
             'status'=>200,
             'message'=> 'Userdata added successfully',
           ]);
     }
-    public function user_login(Request $req)
-    {
-        $email =  $req->input('email');
-        $password = $req->input('password');
+    // public function user_login(Request $req)
+    // {
+    //     $email =  $req->input('email');
+    //     $password = $req->input('password');
+ 
+     
+    //     $user = Auth::user();
+    //     var_dump($user);
+    //     $user = DB::table('users')->where('email',$email)->first();
+    //     if(!Hash::check($password, $user->password))
+    //     {
 
-        $user = DB::table('users')->where('email',$email)->first();
-        if(!Hash::check($password, $user->password))
-        {
-            return response()->json([
-                'status'=>200,
-                'message'=> 'User logined successfully',
-              ]);
-        }
-        else
-        {
-            //$user = DB::table('users')->where('email',$email)->first();
-            return response()->json([
-                'status'=>401,
-                'message'=> 'Not matched',
-              ]);
-        }
-    }
-    public function sunctum_login(Request $req){
+    //                       /** @var \App\Models\User */
+     
+
+    //   // $user = Auth::user();
+    //   $token = $user->createToken('token')->plainTextToken;
+
+    //   $cookie = cookie('jwt', $token, 60 *24); // 1day
+    //   return response()->json([
+    //     'status'=>200,
+    //     'message'=> 'User logined successfully',
+    //   ])->withCookie($cookie);
+    //     }
+    //     else
+    //     {
+    //         //$user = DB::table('users')->where('email',$email)->first();
+    //         return response()->json([
+    //             'status'=>401,
+    //             'message'=> 'Not matched',
+    //           ]);
+    //     }
+    // }
+    public function user_login(Request $req){
+            /** @var \App\Models\User */
+      $user = Auth::user();
       if(!Auth::attempt($req->only('email','password'))){
         return response()->json([
           'status'=>401,
           'message'=> 'Invalid credentials',
         ]);
       }
-      /** @var \App\Models\User */
-      $user = Auth::user();
-      // $user = Auth::user();
-      $token = $user->createToken('token')->plainTextToken;
 
+      $token = $user->createToken('token')->plainTextToken;
       $cookie = cookie('jwt', $token, 60 *24); // 1day
       return response()->json([
         'status'=>200,
@@ -71,9 +83,10 @@ class UserController extends Controller
       return Auth::user();
     }
     public function user_logout(){
-$cookie = Cookie::forgety('jwt');
+$cookie = Cookie::forget('jwt');
 
-return response([
+return response()->json([
+  'status'=>200,
   'message' => 'User logouted successfully'
 ])->withCookie($cookie);
     }
