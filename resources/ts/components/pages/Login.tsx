@@ -120,6 +120,8 @@ export const Login: VFC = memo(() => {
             bg="teal.400"
             color="white"
             _hover={{ bg: 'teal.300' }}
+            isLoading={false}
+            isDisabled={userData.email === '' || userData.password === ''}
             onClick={handleLogin}
           >
             ログイン

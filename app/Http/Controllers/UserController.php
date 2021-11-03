@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\SignupRequest;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -13,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
-    public function user_register(UserRequest $req)
+    public function user_register(SignupRequest $req)
     {
         $name = $req->input('name');
         $email = $req->input('email');
@@ -59,7 +60,7 @@ class UserController extends Controller
     //           ]);
     //     }
     // }
-    public function user_login(UserRequest $req){
+    public function user_login(LoginRequest $req){
             /** @var \App\Models\User */
       $user = Auth::user();
       if(!Auth::attempt($req->only('email','password'))){
