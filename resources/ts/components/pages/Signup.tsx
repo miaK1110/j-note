@@ -41,9 +41,13 @@ export const Signup: VFC = memo(() => {
 
   // for a show/hide password functionality
   const [show, setShow] = React.useState(false);
+  // for isLoading
+  const [loading, setLoading] = useState(false);
+
   const handleClickShow = () => setShow(!show);
 
   const handleSignup = async (e: any) => {
+    setLoading(true);
     e.preventDefault();
     console.log(
       `submitbtnが押されたよ！userDataの中身:${JSON.stringify(userData)}`
@@ -55,9 +59,11 @@ export const Signup: VFC = memo(() => {
     );
     if (res.data.status === 200) {
       console.log(res.data.message);
-      history.push('/');
+      setLoading(false);
+      history.push('/mypage');
     } else {
       console.log(res.data.messege);
+      setLoading(false);
     }
   };
   return (
@@ -135,6 +141,8 @@ export const Signup: VFC = memo(() => {
             bg="teal.400"
             color="white"
             _hover={{ bg: 'teal.300' }}
+            isLoading={loading}
+            isDisabled={userData.email === '' || userData.password === ''}
           >
             会員登録
           </Button>

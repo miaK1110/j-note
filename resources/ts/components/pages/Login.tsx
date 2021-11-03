@@ -40,10 +40,13 @@ export const Login: VFC = memo(() => {
   });
 
   // for a show/hide password functionality
-  const [show, setShow] = React.useState(false);
+  const [show, setShow] = useState(false);
+  // for isLoading
+  const [loading, setLoading] = useState(false);
   const handleClickShow = () => setShow(!show);
 
   const handleLogin = async (e: any) => {
+    setLoading(true);
     e.preventDefault();
     console.log(
       `submitbtn押されたよ！userDataの中身:${JSON.stringify(userData)}`
@@ -52,10 +55,11 @@ export const Login: VFC = memo(() => {
     const res = await axios.post('http://localhost:8000/api/login', userData);
     if (res.data.status === 200) {
       console.log(res.data.message);
+      setLoading(false);
       history.push('/mypage');
-      console.log('user loginできたよ！');
     } else {
       console.log(res.data.messege);
+      setLoading(false);
     }
   };
 
@@ -74,7 +78,7 @@ export const Login: VFC = memo(() => {
         boxShadow="md"
       >
         <Heading as="h1">Log in</Heading>
-        <form>
+        <form action="POST" onSubmit={handleLogin}>
           <Stack spacing={2}>
             <FormControl>
               <FormLabel></FormLabel>
@@ -120,9 +124,8 @@ export const Login: VFC = memo(() => {
             bg="teal.400"
             color="white"
             _hover={{ bg: 'teal.300' }}
-            isLoading={false}
+            isLoading={loading}
             isDisabled={userData.email === '' || userData.password === ''}
-            onClick={handleLogin}
           >
             ログイン
           </Button>
