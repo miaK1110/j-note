@@ -1,9 +1,11 @@
-import React, { ChangeEvent, memo, useState, VFC } from 'react';
+import React, { memo, useState, VFC } from 'react';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router';
 import axios from 'axios';
 import {
   Box,
   FormControl,
-  FormLabel,
+  FormErrorMessage,
   Input,
   Stack,
   VStack,
@@ -25,10 +27,10 @@ import {
   FaEyeSlash,
 } from 'react-icons/fa';
 import { ArrowLeftIcon } from '@chakra-ui/icons';
-import { useHistory } from 'react-router';
 
 export const Login: VFC = memo(() => {
   const history = useHistory();
+
   interface UserData {
     email: string;
     password: string;
@@ -41,34 +43,38 @@ export const Login: VFC = memo(() => {
 
   // for a show/hide password functionality
   const [show, setShow] = useState(false);
-  // for isLoading
-  const [loading, setLoading] = useState(false);
   const handleClickShow = () => setShow(!show);
 
-  const handleLogin = async (e: any) => {
-    setLoading(true);
-    e.preventDefault();
-    console.log(
-      `submitbtn押されたよ！userDataの中身:${JSON.stringify(userData)}`
-    );
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm();
 
-    const res = await axios.post('http://localhost:8000/api/login', userData);
-    if (res.data.status === 200) {
-      console.log(res.data.message);
-      setLoading(false);
-      history.push('/mypage');
-    } else {
-      console.log(res.data.messege);
-      setLoading(false);
-    }
+  console.log(errors);
+
+  const handleLogin = (data: Object) => {
+    axios
+      .post('http://localhost:8000/api/login', data)
+      .then((res) => {
+        if (res.data.status === 200) {
+          console.log(res.data);
+          history.push('/mypage');
+        } else {
+          console.log(res.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error.data);
+      });
   };
 
   return (
-    <Flex bg="gray.100" w="100vw" h="100vh">
+    <Flex bg="gray.100" w="100vw">
       <Box
         w={{ base: '300px', sm: '460px' }}
         maxW="460px"
-        maxH="650px"
+        minH=""
         my={20}
         mx="auto"
         px={6}
@@ -77,31 +83,54 @@ export const Login: VFC = memo(() => {
         rounded="2xl"
         boxShadow="md"
       >
-        <Heading as="h1">Log in</Heading>
-        <form action="POST" onSubmit={handleLogin}>
+        <Heading as="h1" mb={2}>
+          Log in
+        </Heading>
+        <form action="POST" onSubmit={handleSubmit(handleLogin)}>
           <Stack spacing={2}>
-            <FormControl>
-              <FormLabel></FormLabel>
+            <FormControl isInvalid={errors.email}>
+              {/* フィールドネストしてるのでname属性は必要ない */}
               <Input
                 type="email"
-                name="email"
+                id="email"
+                {...register('email', {
+                  required: '入力してください',
+                  maxLength: {
+                    value: 255,
+                    message: '255文字以内で入力してください',
+                  },
+                })}
                 placeholder="Email"
-                value={userData.email}
+                defaultValue={userData.email}
                 isRequired
                 errorBorderColor="crimson"
                 onChange={(e) =>
                   setUserData({ ...userData, email: e.target.value })
                 }
               />
+              <FormErrorMessage>
+                {errors.email && errors.email.message}
+              </FormErrorMessage>
             </FormControl>
-            <FormControl>
-              <FormLabel></FormLabel>
+            <FormControl isInvalid={errors.password}>
               <InputGroup>
+                {/* フィールドネストしてるのでname属性は必要ない */}
                 <Input
                   type={show ? 'text' : 'password'}
                   placeholder="Password"
-                  name="password"
-                  value={userData.password}
+                  id="password"
+                  {...register('password', {
+                    required: '入力してください',
+                    minLength: {
+                      value: 8,
+                      message: '8文字以上で入力してください',
+                    },
+                    maxLength: {
+                      value: 255,
+                      message: '255文字以内で入力してください',
+                    },
+                  })}
+                  defaultValue={userData.password}
                   isRequired
                   errorBorderColor="crimson"
                   onChange={(e) =>
@@ -114,6 +143,9 @@ export const Login: VFC = memo(() => {
                   </Button>
                 </InputRightElement>
               </InputGroup>
+              <FormErrorMessage>
+                {errors.password && errors.password.message}
+              </FormErrorMessage>
             </FormControl>
           </Stack>
           <Button
@@ -124,7 +156,7 @@ export const Login: VFC = memo(() => {
             bg="teal.400"
             color="white"
             _hover={{ bg: 'teal.300' }}
-            isLoading={loading}
+            isLoading={isSubmitting}
             isDisabled={userData.email === '' || userData.password === ''}
           >
             ログイン
@@ -155,11 +187,11 @@ export const Login: VFC = memo(() => {
             </VStack>
           </Stack>
         </form>
-        <Link to="/">
-          <Circle size="40px" bg="teal.400">
-            <ArrowLeftIcon color="white" />
-          </Circle>
-        </Link>
+        <Circle size="40px" bg="teal.400">
+          <Link to="/">
+            <ArrowLeftIcon color="white" />{' '}
+          </Link>
+        </Circle>
       </Box>
     </Flex>
   );

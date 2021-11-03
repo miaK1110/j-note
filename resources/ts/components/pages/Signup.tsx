@@ -1,9 +1,11 @@
 import React, { memo, useState, VFC } from 'react';
 import { useHistory } from 'react-router';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
 import {
   Box,
   FormControl,
-  FormLabel,
+  FormErrorMessage,
   Input,
   Stack,
   Link,
@@ -23,7 +25,6 @@ import {
   FaEyeSlash,
 } from 'react-icons/fa';
 import { ArrowLeftIcon } from '@chakra-ui/icons';
-import axios from 'axios';
 
 interface UserData {
   name: string;
@@ -41,31 +42,51 @@ export const Signup: VFC = memo(() => {
 
   // for a show/hide password functionality
   const [show, setShow] = React.useState(false);
-  // for isLoading
-  const [loading, setLoading] = useState(false);
-
   const handleClickShow = () => setShow(!show);
 
-  const handleSignup = async (e: any) => {
-    setLoading(true);
-    e.preventDefault();
-    console.log(
-      `submitbtnが押されたよ！userDataの中身:${JSON.stringify(userData)}`
-    );
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm();
 
-    const res = await axios.post(
-      'http://localhost:8000/api/add-user',
-      userData
-    );
-    if (res.data.status === 200) {
-      console.log(res.data.message);
-      setLoading(false);
-      history.push('/mypage');
-    } else {
-      console.log(res.data.messege);
-      setLoading(false);
-    }
+  // const handleSignup = async (e: any) => {
+  //   setLoading(true);
+  //   e.preventDefault();
+  //   console.log(
+  //     `submitbtnが押されたよ！userDataの中身:${JSON.stringify(userData)}`
+  //   );
+
+  //   const res = await axios.post(
+  //     'http://localhost:8000/api/add-user',
+  //     userData
+  //   );
+  //   if (res.data.status === 200) {
+  //     console.log(res.data.message);
+  //     setLoading(false);
+  //     history.push('/mypage');
+  //   } else {
+  //     console.log(res.data.messege);
+  //     setLoading(false);
+  //   }
+  // };
+
+  const handleSignup = (data: Object) => {
+    axios
+      .post('http://localhost:8000/api/add-user', data)
+      .then((res) => {
+        if (res.data.status === 200) {
+          console.log(res.data);
+          history.push('/mypage');
+        } else {
+          console.log(res.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error.data);
+      });
   };
+
   return (
     <Flex bg="gray.100" w="100vw" h="100vh">
       <Box
@@ -80,29 +101,46 @@ export const Signup: VFC = memo(() => {
         rounded="2xl"
         boxShadow="md"
       >
-        <Heading as="h1">Sign up</Heading>
-        <form action="POST" onSubmit={handleSignup}>
+        <Heading as="h1" mb={2}>
+          Sign up
+        </Heading>
+        <form action="POST" onSubmit={handleSubmit(handleSignup)}>
           <Stack spacing={2}>
-            <FormControl>
-              <FormLabel></FormLabel>
+            <FormControl isInvalid={errors.name}>
               <Input
                 type="text"
                 placeholder="Username"
-                name="name"
-                value={userData.name}
+                id="name"
+                {...register('name', {
+                  required: '入力してください',
+                  maxLength: {
+                    value: 100,
+                    message: '100文字以内で入力してください',
+                  },
+                })}
+                defaultValue={userData.name}
                 isRequired
                 errorBorderColor="crimson"
                 onChange={(e) =>
                   setUserData({ ...userData, name: e.target.value })
                 }
               />
+              <FormErrorMessage>
+                {errors.name && errors.name.message}
+              </FormErrorMessage>
             </FormControl>
-            <FormControl>
-              <FormLabel></FormLabel>
+            <FormControl isInvalid={errors.email}>
               <Input
                 type="email"
                 placeholder="Email"
-                name="email"
+                id="email"
+                {...register('email', {
+                  required: '入力してください',
+                  maxLength: {
+                    value: 255,
+                    message: '255文字以内で入力してください',
+                  },
+                })}
                 value={userData.email}
                 isRequired
                 errorBorderColor="crimson"
@@ -110,14 +148,27 @@ export const Signup: VFC = memo(() => {
                   setUserData({ ...userData, email: e.target.value })
                 }
               />
+              <FormErrorMessage>
+                {errors.email && errors.email.message}
+              </FormErrorMessage>
             </FormControl>
-            <FormControl>
-              <FormLabel></FormLabel>
+            <FormControl isInvalid={errors.password}>
               <InputGroup>
                 <Input
                   type={show ? 'text' : 'password'}
                   placeholder="Password"
-                  name="password"
+                  id="password"
+                  {...register('password', {
+                    required: '入力してください',
+                    minLength: {
+                      value: 8,
+                      message: '8文字以上で入力してください',
+                    },
+                    maxLength: {
+                      value: 255,
+                      message: '255文字以内で入力してください',
+                    },
+                  })}
                   value={userData.password}
                   isRequired
                   errorBorderColor="crimson"
@@ -131,6 +182,9 @@ export const Signup: VFC = memo(() => {
                   </Button>
                 </InputRightElement>
               </InputGroup>
+              <FormErrorMessage>
+                {errors.password && errors.password.message}
+              </FormErrorMessage>
             </FormControl>
           </Stack>
           <Button
@@ -141,8 +195,12 @@ export const Signup: VFC = memo(() => {
             bg="teal.400"
             color="white"
             _hover={{ bg: 'teal.300' }}
-            isLoading={loading}
-            isDisabled={userData.email === '' || userData.password === ''}
+            isLoading={isSubmitting}
+            isDisabled={
+              userData.name === '' ||
+              userData.email === '' ||
+              userData.password === ''
+            }
           >
             会員登録
           </Button>
