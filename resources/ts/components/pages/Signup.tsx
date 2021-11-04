@@ -16,6 +16,7 @@ import {
   Flex,
   InputGroup,
   InputRightElement,
+  Text,
 } from '@chakra-ui/react';
 import {
   FaGoogle,
@@ -71,6 +72,8 @@ export const Signup: VFC = memo(() => {
   //   }
   // };
 
+  const [apiError, setApiError] = useState(null);
+
   const handleSignup = (data: Object) => {
     axios
       .post('http://localhost:8000/api/add-user', data)
@@ -78,12 +81,39 @@ export const Signup: VFC = memo(() => {
         if (res.data.status === 200) {
           console.log(res.data);
           history.push('/mypage');
-        } else {
-          console.log(res.data);
         }
       })
       .catch((error) => {
-        console.log(error.data);
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log('response error');
+          console.log(error.response.status);
+          // console.log(error.response.headers);
+
+          const responseErr = error.response.data.errors;
+
+          if (responseErr.email) {
+            setApiError(responseErr.email);
+          } else if (responseErr.name) {
+            setApiError(responseErr.name);
+          } else if (responseErr.password) {
+            setApiError(responseErr.password);
+          }
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the
+          // browser and an instance of
+          // http.ClientRequest in node.js
+          console.log('request error');
+          console.log(error.request);
+          setApiError(error.message);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log('Error', error.message);
+          setApiError(error.message);
+        }
+        console.log(error.config);
       });
   };
 
@@ -106,6 +136,11 @@ export const Signup: VFC = memo(() => {
         </Heading>
         <form action="POST" onSubmit={handleSubmit(handleSignup)}>
           <Stack spacing={2}>
+            {apiError && (
+              <Text fontSize="sm" color="crimson">
+                {apiError}
+              </Text>
+            )}
             <FormControl isInvalid={errors.name}>
               <Input
                 type="text"

@@ -18,6 +18,7 @@ import {
   Flex,
   InputGroup,
   InputRightElement,
+  Text,
 } from '@chakra-ui/react';
 import {
   FaGoogle,
@@ -51,7 +52,7 @@ export const Login: VFC = memo(() => {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  console.log(errors);
+  const [apiError, setApiError] = useState('');
 
   const handleLogin = (data: Object) => {
     axios
@@ -60,12 +61,42 @@ export const Login: VFC = memo(() => {
         if (res.data.status === 200) {
           console.log(res.data);
           history.push('/mypage');
-        } else {
-          console.log(res.data);
+        }
+        if (res.data.status === 401) {
+          setApiError('Emailとパスワードが一致しません');
         }
       })
       .catch((error) => {
-        console.log(error.data);
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log('response error');
+          console.log(error.response.status);
+          // console.log(error.response.headers);
+
+          const responseErr = error.response.data.errors;
+
+          if (error.response.status === 401) {
+          }
+          // if (responseErr.email) {
+          //   setApiError(responseErr.email);
+          // } else if (responseErr.password) {
+          //   setApiError(responseErr.password);
+          // }
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the
+          // browser and an instance of
+          // http.ClientRequest in node.js
+          console.log('request error');
+          console.log(error.request);
+          setApiError('サーバーエラーです');
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log('Error', error.message);
+          setApiError('サーバーエラーです');
+        }
+        console.log(error.config);
       });
   };
 
@@ -88,6 +119,11 @@ export const Login: VFC = memo(() => {
         </Heading>
         <form action="POST" onSubmit={handleSubmit(handleLogin)}>
           <Stack spacing={2}>
+            {apiError && (
+              <Text fontSize="sm" color="crimson">
+                {apiError}
+              </Text>
+            )}
             <FormControl isInvalid={errors.email}>
               {/* フィールドネストしてるのでname属性は必要ない */}
               <Input
@@ -130,7 +166,7 @@ export const Login: VFC = memo(() => {
                       message: '255文字以内で入力してください',
                     },
                   })}
-                  defaultValue={userData.password}
+                  value={userData.password}
                   isRequired
                   errorBorderColor="crimson"
                   onChange={(e) =>
