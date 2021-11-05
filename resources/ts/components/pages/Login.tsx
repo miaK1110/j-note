@@ -203,7 +203,7 @@ export const Login: VFC = memo(() => {
               Googleでログイン
             </Button>
             <Button py={6} w="100%" colorScheme="gray" leftIcon={<FaGithub />}>
-              Githubでログイン
+              <Link to="/sign-in/github">Githubでログイン</Link>
             </Button>
             <Button
               py={6}

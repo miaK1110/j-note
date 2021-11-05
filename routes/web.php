@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+// social sign in for github
+Route::get('/sign-in/{provider}', [SocialLoginController::class, 'github']);
+Route::get('/sign-in/{provider}/redirect', [SocialLoginController::class, 'githubRedirect']);
+// social sign in for google
+Route::get('/sign-in/{provider}', [SocialLoginController::class, 'google']);
+Route::get('/sign-in/{provider}/redirect', [SocialLoginController::class, 'googleRedirect']);
+// social sign in for twitter
+Route::get('/sign-in/{provider}', [SocialLoginController::class, 'twitter']);
+Route::get('/sign-in/{provider}/twitter', [SocialLoginController::class, 'twitterRedirect']);
