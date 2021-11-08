@@ -20,14 +20,10 @@ import {
   InputRightElement,
   Text,
 } from '@chakra-ui/react';
-import {
-  FaGoogle,
-  FaTwitter,
-  FaGithub,
-  FaEye,
-  FaEyeSlash,
-} from 'react-icons/fa';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { ArrowLeftIcon } from '@chakra-ui/icons';
+
+import { SocialSigninButton } from '../atoms/SocialSigninButton';
 
 export const Login: VFC = memo(() => {
   const history = useHistory();
@@ -199,20 +195,7 @@ export const Login: VFC = memo(() => {
           </Button>
           <Divider my={7} />
           <Stack spacing={4} mb={5}>
-            <Button py={6} w="100%" colorScheme="red" leftIcon={<FaGoogle />}>
-              Googleでログイン
-            </Button>
-            <Button py={6} w="100%" colorScheme="gray" leftIcon={<FaGithub />}>
-              <Link to="/sign-in/github">Githubでログイン</Link>
-            </Button>
-            <Button
-              py={6}
-              w="100%"
-              colorScheme="twitter"
-              leftIcon={<FaTwitter />}
-            >
-              Twitterでログイン
-            </Button>
+            <SocialSigninButton str={'ログイン'} />
             <VStack>
               <Box>
                 <Checkbox>ログイン状態を保持する</Checkbox>

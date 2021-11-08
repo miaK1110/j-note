@@ -18,14 +18,10 @@ import {
   InputRightElement,
   Text,
 } from '@chakra-ui/react';
-import {
-  FaGoogle,
-  FaTwitter,
-  FaGithub,
-  FaEye,
-  FaEyeSlash,
-} from 'react-icons/fa';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { ArrowLeftIcon } from '@chakra-ui/icons';
+
+import { SocialSigninButton } from '../atoms/SocialSigninButton';
 
 interface UserData {
   name: string;
@@ -50,27 +46,6 @@ export const Signup: VFC = memo(() => {
     register,
     formState: { errors, isSubmitting },
   } = useForm();
-
-  // const handleSignup = async (e: any) => {
-  //   setLoading(true);
-  //   e.preventDefault();
-  //   console.log(
-  //     `submitbtnが押されたよ！userDataの中身:${JSON.stringify(userData)}`
-  //   );
-
-  //   const res = await axios.post(
-  //     'http://localhost:8000/api/add-user',
-  //     userData
-  //   );
-  //   if (res.data.status === 200) {
-  //     console.log(res.data.message);
-  //     setLoading(false);
-  //     history.push('/mypage');
-  //   } else {
-  //     console.log(res.data.messege);
-  //     setLoading(false);
-  //   }
-  // };
 
   const [apiError, setApiError] = useState(null);
 
@@ -241,33 +216,7 @@ export const Signup: VFC = memo(() => {
           </Button>
           <Divider my={7} />
           <Stack spacing={4} mb={8}>
-            <Button
-              aria-label="google"
-              py={6}
-              w="100%"
-              colorScheme="red"
-              leftIcon={<FaGoogle />}
-            >
-              Googleで会員登録
-            </Button>
-            <Button
-              aria-label="github"
-              py={6}
-              w="100%"
-              colorScheme="gray"
-              leftIcon={<FaGithub />}
-            >
-              Githubで会員登録
-            </Button>
-            <Button
-              aria-label="twitter"
-              py={6}
-              w="100%"
-              colorScheme="twitter"
-              leftIcon={<FaTwitter />}
-            >
-              Twitterで会員登録
-            </Button>
+            <SocialSigninButton str={'登録する'} />
           </Stack>
         </form>
         <Link>
